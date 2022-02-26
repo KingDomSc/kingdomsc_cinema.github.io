@@ -39,7 +39,6 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="https://embed.twitch.tv/embed/v1.js"></script>
 </head>
 
 <body>
@@ -107,33 +106,21 @@
                                     })
                                 }
                             })
-                        } else {
-                            let options = {
-                                width: '100%',
-                                height: '100%',
-                                channel: item.url,
-                                layout: "video",
-                                parent: ["kingdomsc.github.io"]
-                            }
-							let twplayer = new Twitch.Player(`kingdomsc_${item.id}`, options)
-							twplayer.play()
-							player[item.id] = twplayer
                         }
                         break
                     case 'update':
                         $(".CinamaObject").css("display", "none")
                         if (!$(".CinamaList").is(':visible')) $(".CinamaList").css("display", "block")
                         item.list.forEach((element) => {
-                            if (player[element.id] !== "undefined") {
-								if (typeof player[element.id].setVolume === "function") player[element.id].setVolume(element.maxVolume - Number(element.distance))
-								else if (typeof player[element.id].volume === "function") player[element.id].volume(element.maxVolume - Number(element.distance))
+                            if (player[element.id] != null) {
+                                player[element.id].setVolume(element.maxVolume - Number(element.distance))
                                 if (element.distance <= 160) $(`.kingdomsc_${element.id}`).css("display", "block")
                             }
                         })
                         break
                     case 'remove':
                         if (player[item.id] != null) {
-							if (typeof player[item.id].destroy === "function") player[item.id].destroy()
+                            player[item.id].destroy()
                             player[item.id] = null
                         }
                         $(`.kingdomsc_${item.id}`).remove()
@@ -144,7 +131,7 @@
                         break
                     case 'pause':
                         if (player[item.id] != null) {
-                            if (typeof player[item.id].destroy === "function") player[item.id].destroy()
+                            player[item.id].destroy()
                             player[item.id] = null
                         }
                         $(`.kingdomsc_${item.id}`).remove()
