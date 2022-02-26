@@ -118,9 +118,6 @@
                             embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
                                 var player = embed.getPlayer()
                                 player.play()
-                                try {
-									player.setVolume(item.maxVolume)
-								} catch(err) {}
                                 player[item.id] = player
                             })
                         }
@@ -130,7 +127,8 @@
                         if (!$(".CinamaList").is(':visible')) $(".CinamaList").css("display", "block")
                         item.list.forEach((element) => {
                             if (player[element.id] != null) {
-                                player[element.id].setVolume(element.maxVolume - Number(element.distance))
+								if (typeof player[element.id].setVolume === "function") player[element.id].setVolume(element.maxVolume - Number(element.distance))
+								else if (typeof player[element.id].volume === "function") player[element.id].volume(element.maxVolume - Number(element.distance))
                                 if (element.distance <= 160) $(`.kingdomsc_${element.id}`).css("display", "block")
                             }
                         })
