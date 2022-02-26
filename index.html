@@ -115,9 +115,9 @@
                                 layout: "video",
                                 parent: ["kingdomsc.github.io"]
                             }
-							var player = new Twitch.Player(`kingdomsc_${item.id}`, options)
-							player.play()
-							player[item.id] = player
+							let twplayer = new Twitch.Player(`kingdomsc_${item.id}`, options)
+							twplayer.play()
+							player[item.id] = twplayer
                         }
                         break
                     case 'update':
