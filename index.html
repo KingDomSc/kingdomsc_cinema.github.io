@@ -133,9 +133,7 @@
                         break
                     case 'remove':
                         if (player[item.id] != null) {
-                            try {
-								player[item.id].destroy()
-							} catch (err) {}
+							if (typeof player[item.id].destroy === "function") player[item.id].destroy()
                             player[item.id] = null
                         }
                         $(`.kingdomsc_${item.id}`).remove()
@@ -146,9 +144,7 @@
                         break
                     case 'pause':
                         if (player[item.id] != null) {
-                            try {
-								player[item.id].destroy()
-							} catch (err) {}
+                            if (typeof player[item.id].destroy === "function") player[item.id].destroy()
                             player[item.id] = null
                         }
                         $(`.kingdomsc_${item.id}`).remove()
