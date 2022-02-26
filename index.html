@@ -118,7 +118,9 @@
                             embed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
                                 var player = embed.getPlayer()
                                 player.play()
-                                player.setVolume(item.maxVolume)
+                                try {
+									player.setVolume(item.maxVolume)
+								} catch(err) {}
                                 player[item.id] = player
                             })
                         }
@@ -135,7 +137,9 @@
                         break
                     case 'remove':
                         if (player[item.id] != null) {
-                            player[item.id].destroy()
+                            try {
+								player[item.id].destroy()
+							} catch (err) {}
                             player[item.id] = null
                         }
                         $(`.kingdomsc_${item.id}`).remove()
@@ -146,7 +150,9 @@
                         break
                     case 'pause':
                         if (player[item.id] != null) {
-                            player[item.id].destroy()
+                            try {
+								player[item.id].destroy()
+							} catch (err) {}
                             player[item.id] = null
                         }
                         $(`.kingdomsc_${item.id}`).remove()
