@@ -57,6 +57,10 @@
                 let item = event.data
                 switch (item.action) {
                     case 'add':
+                        if (player[item.id] != null) {
+                            player[item.id].destroy()
+                            player[item.id] = null
+                        }
                         $(".CinamaList").css("display", "block")
                         $(".about, .tablet").css("display", "none")
                         $(`.kingdomsc_${item.id}`).remove()
