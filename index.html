@@ -479,6 +479,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
 </head>
 
 <body>
@@ -589,53 +590,17 @@
                         $(".tablet").css("display", "block")
                         break
                     case 'add':
-                        let url = YTParse(item.url)
-                        if (url) {
-                            $(".CinamaList").css("display", "block")
-                            $(".about, .tablet").css("display", "none")
-                            $(`.kingdomsc_${item.id}`).remove()
-                            $(".CinamaList").append(`<div class="CinamaObject kingdomsc_${item.id}" id='kingdomsc_${item.id}'></div>`)
-                            new YT.Player(`kingdomsc_${item.id}`, {
-                                width: '100%',
-                                height: '100%',
-                                videoId: url,
-                                playerVars: {
-                                    'controls': 0,
-                                    'showinfo': 0,
-                                    'disablekb': 1,
-                                    'rel': 0,
-                                    'cc_load_policy': 0,
-                                    'iv_load_policy': 0,
-                                },
-                                events: {
-                                    'onReady': (function (event) {
-                                        event.target.playVideo()
-                                        event.target.setVolume(item.maxVolume)
-                                        player[item.id] = event.target
-                                    }),
-                                    'onStateChange': (function (event) {
-                                        if (event.data === 0) {
-                                            if (player[item.id] != null) {
-                                                player[item.id].destroy()
-                                                player[item.id] = null
-                                            }
-                                            $(".about").css("display", "block")
-                                            $(".tablet, .CinamaList").css("display", "none")
-                                            $(`.kingdomsc_${item.id}`).remove()
-                                            $.post("http://kingdomsc_cinema/updateState", JSON.stringify({ id: item.id }))
-                                        }
-                                    }),
-                                    'onError': (function (event) {
-                                        if (player[item.id] != null) {
-                                            player[item.id].destroy()
-                                            player[item.id] = null
-                                        }
-                                        $(`.kingdomsc_${item.id}`).remove()
-                                        $.post("http://kingdomsc_cinema/updateState", JSON.stringify({ id: item.id }))
-                                    })
-                                }
-                            })
-                        }
+                        $(".CinamaList").css("display", "block")
+                        $(".about, .tablet").css("display", "none")
+                        $(`.kingdomsc_${item.id}`).remove()
+                        $(".CinamaList").append(`<div class="CinamaObject kingdomsc_${item.id}" id='kingdomsc_${item.id}'></div>`)
+                        new Twitch.Embed(`kingdomsc_${item.id}`, {
+                            width: 854,
+                            height: 480,
+                            channel: "ahmed_show",
+                            // Only needed if this page is going to be embedded on other websites
+                            parent: ["kingdomsc.github.io"]
+                        })
                         break
                     case 'update':
                         $(".CinamaObject").css("display", "none")
