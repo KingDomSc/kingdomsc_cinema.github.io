@@ -113,7 +113,7 @@
                         if (!$(".CinamaList").is(':visible')) $(".CinamaList").css("display", "block")
                         item.list.forEach((element) => {
                             if (player[element.id] != null) {
-                                player[element.id].setVolume(((element.maxVolume) + 20) - Number(element.distance))
+                                player[element.id].setVolume(element.maxVolume - Number(element.distance))
                                 if (element.distance <= 160) $(`.kingdomsc_${element.id}`).css("display", "block")
                             }
                         })
