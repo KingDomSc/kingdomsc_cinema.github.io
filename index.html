@@ -56,16 +56,16 @@
                 let item = event.data
                 switch (item.action) {
                     case 'add':
-                        if (player[item.id] != null) {
-                            player[item.id].destroy()
-                            player[item.id] = null
-                        }
-                        $(".CinamaList").css("display", "block")
-                        $(".about, .tablet").css("display", "none")
-                        $(`.kingdomsc_${item.id}`).remove()
-                        $(".CinamaList").append(`<div class="CinamaObject kingdomsc_${item.id}" id='kingdomsc_${item.id}'></div>`)
                         let url = YTParse(item.url)
                         if (url) {
+							if (player[item.id] != null) {
+								player[item.id].destroy()
+								player[item.id] = null
+							}
+							$(".CinamaList").css("display", "block")
+							$(".about, .tablet").css("display", "none")
+							$(`.kingdomsc_${item.id}`).remove()
+							$(".CinamaList").append(`<div class="CinamaObject kingdomsc_${item.id}" id='kingdomsc_${item.id}'></div>`)
                             new YT.Player(`kingdomsc_${item.id}`, {
                                 width: '100%',
                                 height: '100%',
