@@ -28,11 +28,23 @@
             background-repeat: no-repeat !important;
         }
 
-        body .CinamaObject {
+        /* body .CinamaObject {
             position: relative;
             background-color: white;
             display: none;
             overflow: hidden;
+        } */
+        
+        .CinamaObject {
+            position: fixed;
+            z-index: -99999;
+            -webkit-user-select: none;
+            user-select: none;
+            width: 100%;
+            height: 100%;
+            -ms-transform: scale(1, 1.9);
+            -webkit-transform: scale(1, 1.9);
+            transform: scale(1, 1.9);
         }
 
         /*# sourceMappingURL=style.css.map */
