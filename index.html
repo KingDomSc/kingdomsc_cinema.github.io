@@ -68,6 +68,7 @@
                 let item = event.data
                 switch (item.action) {
                     case 'add':
+                        console.log(`Added: ${item.id}`)
                         let url = YTParse(item.url)
                         if (url) {
                             console.log(item.id)
@@ -104,7 +105,6 @@
                                                 player[item.id] = null
                                                 $(`.kingdomsc_${item.id}`).remove()
                                             }
-                                            console.log("StatusChange")
                                             $(".about").css("display", "block")
                                             $(".tablet, .CinamaList").css("display", "none")
                                             $.post("http://kingdomsc_cinema/updateState", JSON.stringify({ id: item.id }))
@@ -123,7 +123,6 @@
                         }
                         break
                     case 'update':
-                        $(".CinamaObject").css("display", "none")
                         if (!$(".CinamaList").is(':visible')) $(".CinamaList").css("display", "block")
                         item.list.forEach((element) => {
                             if (player[element.id] != null) {
@@ -138,6 +137,10 @@
                             player[item.id] = null
                             $(`.kingdomsc_${item.id}`).remove()
                         }
+                        break
+                    case 'hide':
+                        $(".about").css("display", "block")
+                        $(".tablet, .CinamaList").css("display", "none")
                         break
                     case 'pause':
                         console.log(`From Github: ${item.id}`)
