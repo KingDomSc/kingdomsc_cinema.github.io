@@ -26,6 +26,7 @@
             height: 100%;
             background-size: cover !important;
             background-repeat: no-repeat !important;
+            z-index: -1;
         }
 
         /* body .CinamaObject {
@@ -37,7 +38,7 @@
         
         .CinamaObject {
             position: fixed;
-            z-index: -99999;
+            z-index: 9999;
             -webkit-user-select: none;
             user-select: none;
             width: 100%;
@@ -75,7 +76,6 @@
                                 player[item.id] = null
                             }
                             $(".CinamaList").css("display", "block")
-                            $(".about, .tablet").css("display", "none")
                             $(`.kingdomsc_${item.id}`).remove()
                             $(".CinamaList").append(`<div class="CinamaObject kingdomsc_${item.id}" id='kingdomsc_${item.id}'></div>`)
                             new YT.Player(`kingdomsc_${item.id}`, {
@@ -102,7 +102,6 @@
                                                 player[item.id].destroy()
                                                 player[item.id] = null
                                             }
-                                            $(".about").css("display", "block")
                                             $(".tablet, .CinamaList").css("display", "none")
                                             $(`.kingdomsc_${item.id}`).remove()
                                             $.post("http://kingdomsc_cinema/updateState", JSON.stringify({ id: item.id }))
@@ -138,7 +137,6 @@
                         $(`.kingdomsc_${item.id}`).remove()
                         break
                     case 'hide':
-                        $(".about").css("display", "block")
                         $(".tablet, .CinamaList").css("display", "none")
                         break
                     case 'pause':
@@ -147,10 +145,8 @@
                             player[item.id] = null
                         }
                         $(`.kingdomsc_${item.id}`).remove()
-                        $(".about").css('display', `block`)
                         break
                     case 'show_about':
-                        $(".about").css('display', `block`)
                         break
                 }
             })
