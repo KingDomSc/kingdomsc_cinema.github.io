@@ -145,9 +145,9 @@
                         if (player[item.id] != null) {
                             player[item.id].destroy()
                             player[item.id] = null
+                            $(`.kingdomsc_${item.id}`).remove()
+                            $(".about").css('display', `block`)
                         }
-                        $(`.kingdomsc_${item.id}`).remove()
-                        $(".about").css('display', `block`)
                         break
                     case 'show_about':
                         $(".about").css('display', `block`)
