@@ -74,10 +74,10 @@
                             if (player[item.id] != null) {
                                 player[item.id].destroy()
                                 player[item.id] = null
+                                $(`.kingdomsc_${item.id}`).remove()
                             }
                             $(".CinamaList").css("display", "block")
                             $(".about, .tablet").css("display", "none")
-                            $(`.kingdomsc_${item.id}`).remove()
                             $(".CinamaList").append(`<div class="CinamaObject kingdomsc_${item.id}" id='kingdomsc_${item.id}'></div>`)
                             new YT.Player(`kingdomsc_${item.id}`, {
                                 width: '100%',
@@ -102,10 +102,10 @@
                                             if (player[item.id] != null) {
                                                 player[item.id].destroy()
                                                 player[item.id] = null
+                                                $(`.kingdomsc_${item.id}`).remove()
                                             }
                                             $(".about").css("display", "block")
                                             $(".tablet, .CinamaList").css("display", "none")
-                                            $(`.kingdomsc_${item.id}`).remove()
                                             $.post("http://kingdomsc_cinema/updateState", JSON.stringify({ id: item.id }))
                                         }
                                     }),
@@ -113,8 +113,8 @@
                                         if (player[item.id] != null) {
                                             player[item.id].destroy()
                                             player[item.id] = null
+                                            $(`.kingdomsc_${item.id}`).remove()
                                         }
-                                        $(`.kingdomsc_${item.id}`).remove()
                                         $.post("http://kingdomsc_cinema/updateState", JSON.stringify({ id: item.id }))
                                     })
                                 }
@@ -135,15 +135,15 @@
                         if (player[item.id] != null) {
                             player[item.id].destroy()
                             player[item.id] = null
+                            $(`.kingdomsc_${item.id}`).remove()
                         }
-                        $(`.kingdomsc_${item.id}`).remove()
                         break
                     case 'hide':
                         $(".about").css("display", "block")
                         $(".tablet, .CinamaList").css("display", "none")
                         break
                     case 'pause':
-                        console.log(item.id)
+                        console.log(`From Github: ${item.id}`)
                         if (player[item.id] != null) {
                             player[item.id].destroy()
                             player[item.id] = null
