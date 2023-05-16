@@ -68,10 +68,8 @@
                 let item = event.data
                 switch (item.action) {
                     case 'add':
-                        console.log(`Added: ${item.id}`)
                         let url = YTParse(item.url)
                         if (url) {
-                            console.log(item.id)
                             if (player[item.id] != null) {
                                 player[item.id].destroy()
                                 player[item.id] = null
@@ -123,6 +121,7 @@
                         }
                         break
                     case 'update':
+                        $(".CinamaObject").css("display", "none")
                         if (!$(".CinamaList").is(':visible')) $(".CinamaList").css("display", "block")
                         item.list.forEach((element) => {
                             if (player[element.id] != null) {
@@ -143,7 +142,6 @@
                         $(".tablet, .CinamaList").css("display", "none")
                         break
                     case 'pause':
-                        console.log(`From Github: ${item.id}`)
                         if (player[item.id] != null) {
                             player[item.id].destroy()
                             player[item.id] = null
@@ -153,9 +151,6 @@
                         break
                     case 'show_about':
                         $(".about").css('display', `block`)
-                        break
-                    case 'setting':
-                        $(".about").css('background', `url('${item.StopBackground}')`).css('display', `block`)
                         break
                 }
             })
