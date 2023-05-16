@@ -104,6 +104,7 @@
                                                 player[item.id] = null
                                                 $(`.kingdomsc_${item.id}`).remove()
                                             }
+                                            console.log("StatusChange")
                                             $(".about").css("display", "block")
                                             $(".tablet, .CinamaList").css("display", "none")
                                             $.post("http://kingdomsc_cinema/updateState", JSON.stringify({ id: item.id }))
@@ -137,10 +138,6 @@
                             player[item.id] = null
                             $(`.kingdomsc_${item.id}`).remove()
                         }
-                        break
-                    case 'hide':
-                        $(".about").css("display", "block")
-                        $(".tablet, .CinamaList").css("display", "none")
                         break
                     case 'pause':
                         console.log(`From Github: ${item.id}`)
