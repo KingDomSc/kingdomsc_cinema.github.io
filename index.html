@@ -70,6 +70,7 @@
                     case 'add':
                         let url = YTParse(item.url)
                         if (url) {
+                            console.log(item.id)
                             if (player[item.id] != null) {
                                 player[item.id].destroy()
                                 player[item.id] = null
@@ -142,6 +143,7 @@
                         $(".tablet, .CinamaList").css("display", "none")
                         break
                     case 'pause':
+                        console.log(item.id)
                         if (player[item.id] != null) {
                             player[item.id].destroy()
                             player[item.id] = null
